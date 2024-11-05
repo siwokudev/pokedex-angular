@@ -10,7 +10,7 @@ import { BarComponent } from './bar/bar.component';
   imports: [
     CommonModule, SelectionComponent, BarComponent
   ],exports:[
-    SelectionComponent
+    BarComponent
   ],
 })
 export class NavigationModule { }

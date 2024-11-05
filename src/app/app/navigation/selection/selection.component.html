@@ -1,10 +1,15 @@
-<a class="button">
-    <div >
-        <figure class="image is-128x128">
-            <img src="https://bulma.io/assets/images/placeholders/128x128.png" />
-        </figure>
+<div class="card is-inline-flex custom-card-radius">
+    <div class="card-content">
+        <div class="is-flex is-justify-content-center">
+            <figure class="image is-128x128">
+                <img
+                  [src]="imgUrl"
+                  alt="Placeholder image"
+                />
+            </figure>
+        </div>
+        <div class="has-text-centered">
+            <h5 class="subtitle is-6">{{text}}</h5>
+        </div>
     </div>
-    <div>
-        Name
-    </div>
-</a>
+</div>
