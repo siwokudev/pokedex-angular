@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { NavigationModule } from './app/navigation/navigation.module';
+import { NavigationModule } from './navigation/navigation.module';
 
 export const routes: Routes = [{
     path:"",

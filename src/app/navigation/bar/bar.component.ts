@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SelectionComponent } from "../selection/selection.component";
+import { PokeApiService } from '../../shared/services/poke-api.service';
 
 @Component({
   selector: 'app-bar',
@@ -9,5 +10,10 @@ import { SelectionComponent } from "../selection/selection.component";
   styleUrl: './bar.component.css'
 })
 export class BarComponent {
-  //fetch pokemon data
+  pokeApiService = inject(PokeApiService)
+  pokemons
+
+  constructor() {
+    this.pokemons = this.pokeApiService.getPokemons();
+  }
 }
