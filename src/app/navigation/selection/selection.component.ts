@@ -15,9 +15,11 @@ export class SelectionComponent implements AfterViewInit {
 
   constructor() {}
 
-  @Input() text = "Pokemon Name"
-  @Input() id = 0
-  @Input() imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+  @Input() text : string = "Catching Some pokemon";
+  @Input() id : number = 0;
+  @Input() imgUrl : string = "";
+
+  mouseOver : boolean = false
 
   ngAfterViewInit(): void {
     if (this.id < 1){
@@ -27,5 +29,9 @@ export class SelectionComponent implements AfterViewInit {
     this.pokeApiService.getPokemon(this.id).subscribe(data => {
       this.imgUrl = data.sprites.front_default
     });
+  }
+
+  onClick() {
+    console.log("clicked: " + this.text);
   }
 }

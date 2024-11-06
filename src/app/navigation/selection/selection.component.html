@@ -1,12 +1,23 @@
-<div class="card is-inline-flex custom-card-radius">
+<div class="box is-inline-flex custom-radius" [id]="id+text" 
+(click)="onClick()">
     <div class="card-content">
         <div class="is-flex is-justify-content-center">
-            <figure class="image is-64x64">
-                <img
-                  [ngSrc]="imgUrl"
-                  alt="Placeholder image"
-                  width="64" height="64"
-                />
+            <figure class="image">
+                @if (imgUrl) {
+                    <img
+                    [ngSrc]="imgUrl"
+                    [alt]="text"
+                    width="128" height="128"
+                  />
+                } @else {
+                    <img
+                    ngSrc="/assets/poke-ball.png"
+                    alt="poke-ball"
+                    width="128" height="128"
+                    priority
+                  />
+                }
+                
             </figure>
         </div>
         <div class="has-text-centered">

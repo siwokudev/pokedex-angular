@@ -10,23 +10,25 @@ export class PokeApiService {
   constructor(private http : HttpClient) { } //remeber to add HttpClientProvider to app.config
 
   baseUrl : string = "https://pokeapi.co/api/v2/pokemon"
+  next : string = ""
 
   getPokemons() : PokemonUrl[] {
     let offset : number = 0;
-    let limit : number = 20;
+    let limit : number = 151;
     let url : string = this.baseUrl + "?offset="+ offset + "&limit=" + limit;
 
     let pokemons : PokemonUrl[] = []
     this.http.request<AllPokemonResponse>('GET', url, {responseType:'json'}).pipe(delay(500)) //remove delay, this is for latency test
     .subscribe(data => data.results
       .map(result => {
+        this.next = data.next;
         let splitId :number = parseInt(result.url.split(/\/(\d+)\//)[1]);
         let poke : PokemonUrl = {
         name: result.name,
         url: result.url,
         id: splitId,
-      }
-      pokemons.push(poke)
+      };
+      pokemons.push(poke);
     }));
 
     return pokemons;

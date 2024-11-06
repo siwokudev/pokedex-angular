@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { SelectionComponent } from "../selection/selection.component";
 import { PokeApiService } from '../../shared/services/poke-api.service';
-import { Pokemon, PokemonUrl } from '../../shared/interfaces/pokeApi';
-import { Observable } from 'rxjs';
+import { PokemonUrl } from '../../shared/interfaces/pokeApi';
 
 @Component({
   selector: 'app-bar',
@@ -12,8 +11,8 @@ import { Observable } from 'rxjs';
   styleUrl: './bar.component.css'
 })
 export class BarComponent {
-  pokeApiService = inject(PokeApiService)
-  pokemons : PokemonUrl[]
+  pokeApiService = inject(PokeApiService);
+  pokemons : PokemonUrl[];
 
   constructor() {
     this.pokemons = this.pokeApiService.getPokemons();

@@ -1,9 +1,8 @@
 <div class="scrollable">
 @for (pokemon of pokemons; track pokemon.name) {
     <app-selection [text] = "pokemon.name" [id] = "pokemon.id"/>
-    
 } @empty {
-    <app-selection text = "Catching Some pokemon"/>
+    <app-selection/>
 }
 </div>
 
