@@ -11,20 +11,29 @@ export class PokeApiService {
 
   baseUrl : string = "https://pokeapi.co/api/v2/pokemon"
 
-  getPokemons() : Pokemon[] {
+  getPokemons() : PokemonUrl[] {
     let offset : number = 0;
     let limit : number = 20;
     let url : string = this.baseUrl + "?offset="+ offset + "&limit=" + limit;
 
-    let pokemons : Pokemon[] = []
+    let pokemons : PokemonUrl[] = []
     this.http.request<AllPokemonResponse>('GET', url, {responseType:'json'}).pipe(delay(500)) //remove delay, this is for latency test
     .subscribe(data => data.results
-      .map(result => {let poke : Pokemon = {
-        name: result.name
+      .map(result => {
+        let splitId :number = parseInt(result.url.split(/\/(\d+)\//)[1]);
+        let poke : PokemonUrl = {
+        name: result.name,
+        url: result.url,
+        id: splitId,
       }
       pokemons.push(poke)
     }));
 
     return pokemons;
+  }
+
+  getPokemon( id : number) : Observable<Pokemon> {
+    let url : string = this.baseUrl + "/" + id;
+    return this.http.request<Pokemon>('GET', url, {responseType:'json'})
   }
 }

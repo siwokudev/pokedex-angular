@@ -3,13 +3,14 @@
         <div class="is-flex is-justify-content-center">
             <figure class="image is-64x64">
                 <img
-                  [src]="imgUrl"
+                  [ngSrc]="imgUrl"
                   alt="Placeholder image"
+                  width="64" height="64"
                 />
             </figure>
         </div>
         <div class="has-text-centered">
-            <h6 class="subtitle is-6">{{text}}</h6>
+            <h6 class="subtitle is-6"> @if(id > 0) {#{{id}}} {{text | titlecase}}</h6>
         </div>
     </div>
 </div>

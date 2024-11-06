@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { SelectionComponent } from "../selection/selection.component";
 import { PokeApiService } from '../../shared/services/poke-api.service';
-import { Pokemon } from '../../shared/interfaces/pokeApi';
+import { Pokemon, PokemonUrl } from '../../shared/interfaces/pokeApi';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class BarComponent {
   pokeApiService = inject(PokeApiService)
-  pokemons : Pokemon[]
+  pokemons : PokemonUrl[]
 
   constructor() {
     this.pokemons = this.pokeApiService.getPokemons();
