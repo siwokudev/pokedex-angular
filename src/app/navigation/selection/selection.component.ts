@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [NgOptimizedImage],
   templateUrl: './selection.component.html',
-  styleUrl: './selection.component.css'
+  styleUrl: './selection.component.css',
 })
 export class SelectionComponent {
   @Input() text = "Pokemon Name"
