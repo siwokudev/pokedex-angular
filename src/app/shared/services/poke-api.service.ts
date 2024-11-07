@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AllPokemonResponse, Pokemon, PokemonUrl } from '../interfaces/pokeApi';
-import { HttpClient, HttpResponse } from '@angular/common/http'; 
-import { delay, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http'; 
+import { delay, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,8 @@ export class PokeApiService {
   next : string = ""
 
   getPokemons() : PokemonUrl[] {
+    console.log("fetching all pokemon")
+
     let offset : number = 0;
     let limit : number = 151;
     let url : string = this.baseUrl + "?offset="+ offset + "&limit=" + limit;

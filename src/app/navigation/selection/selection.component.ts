@@ -2,6 +2,7 @@ import { NgOptimizedImage, TitleCasePipe } from '@angular/common';
 import { AfterViewInit, Component, inject, Input} from '@angular/core';
 
 import { PokeApiService } from '../../shared/services/poke-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-selection',
@@ -12,6 +13,7 @@ import { PokeApiService } from '../../shared/services/poke-api.service';
 })
 export class SelectionComponent implements AfterViewInit {
   pokeApiService = inject(PokeApiService)
+  router = inject(Router)
 
   constructor() {}
 
@@ -32,6 +34,7 @@ export class SelectionComponent implements AfterViewInit {
   }
 
   onClick() {
-    console.log("clicked: " + this.text);
+    console.log("navigate to: /details/ " + this.id);
+    this.router.navigate(["/details/" + this.id]);
   }
 }

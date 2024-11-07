@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
-import { NavigationModule } from './navigation/navigation.module';
+import { GeneralDetailComponent } from './details/general-detail/general-detail.component';
 
 export const routes: Routes = [{
-    path:"",
-    component: NavigationModule,
+    path:"details/:id",
+    component: GeneralDetailComponent,
+},{path: '**',  
+    redirectTo: '', pathMatch: "full"
 }];

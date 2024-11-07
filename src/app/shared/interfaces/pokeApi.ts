@@ -1,6 +1,10 @@
 export interface Pokemon {
-    name: string
-    sprites: Sprites
+    id: number,
+    name: string,
+    sprites: Sprites,
+    cries: {
+        latest:string,
+    }
 }
 
 export interface Sprites {
@@ -12,6 +16,12 @@ export interface Sprites {
     front_female: string,
     front_shiny: string,
     fron_shiny_female: string
+    other: {
+        dream_world: Sprites,
+        home: Sprites,
+        "official-artwork": Sprites,
+        showdown: Sprites
+    }
 }
 
 export interface PokemonUrl {

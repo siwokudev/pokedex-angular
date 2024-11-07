@@ -1,30 +1,45 @@
 <div class="columns">
     <div class="column is-one-quarter">
+        @if (pokemon.id) {
         <div class="box" >
-            <div class="content">
-                <h5 class="card-header-title is-justify-content-center">Card header</h5>
-            </div>
-            <div class="content">
-                <label class="checkbox">
-                    <input type="checkbox" [ngModel]="shiny" (ngModelChange)="onShinySelected($event)"/> Shiny
-                </label>
-                <figure class="image is-flex">
-                    <img
-                        ngSrc="{{imgUrl}}"
-                        width="64"
-                        height="64"
-                        alt="Placeholder image"
-                        priority
-                    />
-                </figure>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-                    iaculis mauris.
-                </p>
-            </div>   
-            <div class="content">
-                
-            </div>
+                <div class="content">
+                    <h5 class="card-header-title is-justify-content-center">#{{pokemon.id}} {{pokemon.name | titlecase}}</h5>
+                </div>
+                <div class="content">
+                    <label class="checkbox">
+                        <input type="checkbox" [ngModel]="shiny" (ngModelChange)="onShinySelected($event)"/> Shiny
+                    </label>
+                    <figure class="image is-flex">
+                        @defer (on viewport; prefetch on idle) {
+                            <img
+                            ngSrc="{{imgUrl}}"
+                            width="128" height="128"
+                            alt="{{pokemon.name}}"
+                            priority
+                            />
+                        } @placeholder (minimum 200ms) {
+                            <div class="content">
+                                <img
+                                ngSrc="/assets/pokeball.jpg"
+                                width="128" height="128"
+                                alt="pokeball"
+                                priority
+                                />
+                            </div>
+                        }
+                    </figure>
+                    <p>
+                        <audio [volume]="0.25" #ref [src]="pokemon.cries.latest" type="audio/ogg">Can not play pokemon sound</audio>
+                        <button (click)="ref.play()">
+                            <span class="icon">
+                                <i class="fa fa-volume-up fa-lg" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </p>
+                    <p>{{descriptionText}}
+                    </p>
+                </div>   
         </div>
+    }
     </div> 
 </div>
