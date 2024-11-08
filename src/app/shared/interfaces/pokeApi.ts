@@ -23,7 +23,7 @@ export interface PokemonSpecies {
     habitat: SimpleField,
     evolution_chain:{
         url: string,
-    }
+    }, has_gender_differences : boolean
 }
 
 export interface FlavorText {
