@@ -4,7 +4,37 @@ export interface Pokemon {
     sprites: Sprites,
     cries: {
         latest:string,
+    },
+    species:{
+        name: string,
+        url: string,
     }
+}
+
+export interface PokemonSpecies {
+    id: number,
+    flavor_text_entries: FlavorText[],
+    genera: [
+        {
+            genus: string,
+            language: SimpleField
+        }
+    ],
+    habitat: SimpleField,
+    evolution_chain:{
+        url: string,
+    }
+}
+
+export interface FlavorText {
+    flavor_text: string,
+    language: SimpleField,
+    version: SimpleField
+}
+
+export interface SimpleField {
+    name:string,
+    url: string
 }
 
 export interface Sprites {

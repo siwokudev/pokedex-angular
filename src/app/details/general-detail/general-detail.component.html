@@ -1,14 +1,11 @@
 <div class="columns">
     <div class="column is-one-quarter">
-        @if (pokemon.id) {
+        @if (pokemon.id && pokemonSpecies.id) {
         <div class="box" >
                 <div class="content">
                     <h5 class="card-header-title is-justify-content-center">#{{pokemon.id}} {{pokemon.name | titlecase}}</h5>
                 </div>
                 <div class="content">
-                    <label class="checkbox">
-                        <input type="checkbox" [ngModel]="shiny" (ngModelChange)="onShinySelected($event)"/> Shiny
-                    </label>
                     <figure class="image is-flex">
                         @defer (on viewport; prefetch on idle) {
                             <img
@@ -28,16 +25,23 @@
                             </div>
                         }
                     </figure>
-                    <p>
-                        <audio [volume]="0.25" #ref [src]="pokemon.cries.latest" type="audio/ogg">Can not play pokemon sound</audio>
-                        <button (click)="ref.play()">
-                            <span class="icon">
-                                <i class="fa fa-volume-up fa-lg" aria-hidden="true"></i>
-                            </span>
-                        </button>
-                    </p>
-                    <p>{{descriptionText}}
-                    </p>
+                    <div class="columns">
+                        <div class="column is-half">
+                            <audio [volume]="0.25" #ref [src]="pokemon.cries.latest" type="audio/ogg">Can not play pokemon sound</audio>
+                            <button (click)="ref.play()">
+                                <span class="icon">
+                                    <i class="fa fa-volume-up fa-lg" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="column">
+                            <label class="checkbox">
+                                <input type="checkbox" [ngModel]="shiny" (ngModelChange)="onShinySelected($event)"/> Shiny
+                            </label>
+                        </div>
+                    </div>
+                        <p>Habitat: {{pokemonSpecies.habitat.name | titlecase}}</p>
+                        <p>{{ pokemonSpecies.flavor_text_entries | flavourTextLanguage: "en"}}</p>
                 </div>   
         </div>
     }

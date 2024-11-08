@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AllPokemonResponse, Pokemon, PokemonUrl } from '../interfaces/pokeApi';
+import { AllPokemonResponse, Pokemon, PokemonSpecies, PokemonUrl } from '../interfaces/pokeApi';
 import { HttpClient } from '@angular/common/http'; 
 import { delay, Observable, of } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { delay, Observable, of } from 'rxjs';
 export class PokeApiService {
   constructor(private http : HttpClient) { } //remeber to add HttpClientProvider to app.config
 
-  baseUrl : string = "https://pokeapi.co/api/v2/pokemon"
+  baseUrl : string = "https://pokeapi.co/api/v2"
   next : string = ""
 
   getPokemons() : PokemonUrl[] {
@@ -17,7 +17,7 @@ export class PokeApiService {
 
     let offset : number = 0;
     let limit : number = 151;
-    let url : string = this.baseUrl + "?offset="+ offset + "&limit=" + limit;
+    let url : string = this.baseUrl + "/pokemon?offset="+ offset + "&limit=" + limit;
 
     let pokemons : PokemonUrl[] = []
     this.http.request<AllPokemonResponse>('GET', url, {responseType:'json'}).pipe(delay(500)) //remove delay, this is for latency test
@@ -37,7 +37,12 @@ export class PokeApiService {
   }
 
   getPokemon( id : number) : Observable<Pokemon> {
-    let url : string = this.baseUrl + "/" + id;
-    return this.http.request<Pokemon>('GET', url, {responseType:'json'})
+    let url : string = this.baseUrl + "/pokemon/" + id;
+    return this.http.request<Pokemon>('GET', url, {responseType:'json'});
+  }
+
+  getPokemonSpecies(id : number) : Observable<PokemonSpecies> {
+    let url : string = this.baseUrl + "/pokemon-species/" + id;
+    return this.http.request<PokemonSpecies>('GET', url, {responseType: "json"});
   }
 }
