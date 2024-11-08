@@ -27,12 +27,14 @@
                     </figure>
                     <div class="columns">
                         <div class="column is-half">
-                            <audio [volume]="0.25" #ref [src]="pokemon.cries.latest" type="audio/ogg">Can not play pokemon sound</audio>
-                            <button (click)="ref.play()">
-                                <span class="icon">
-                                    <i class="fa fa-volume-up fa-lg" aria-hidden="true"></i>
-                                </span>
-                            </button>
+                            @if (pokemon.cries) {
+                                <audio [volume]="0.25" #ref [src]="pokemon.cries.latest" type="audio/ogg">Can not play pokemon sound</audio>
+                                <button (click)="ref.play()">
+                                    <span class="icon">
+                                        <i class="fa fa-volume-up fa-lg" aria-hidden="true"></i>
+                                    </span>
+                                </button>
+                            } 
                         </div>
                         <div class="column">
                             <label class="checkbox">
@@ -40,10 +42,13 @@
                             </label>
                         </div>
                     </div>
-                        <p>Habitat: {{pokemonSpecies.habitat.name | titlecase}}</p>
+                        <p>Habitat: @if (pokemonSpecies.habitat) {  {{pokemonSpecies.habitat.name | titlecase}}  } </p>
                         <p>{{ pokemonSpecies.flavor_text_entries | flavourTextLanguage: "en"}}</p>
                 </div>   
         </div>
     }
-    </div> 
+    </div>
+    <div class="column is-one-third">
+        <app-stats-detail [stats] = "pokemon.stats" ></app-stats-detail>
+    </div>
 </div>

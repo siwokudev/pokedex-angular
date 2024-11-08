@@ -15,7 +15,7 @@ export class PokeApiService {
   getPokemons() : PokemonUrl[] {
     console.log("fetching all pokemon")
 
-    let offset : number = 0;
+    let offset : number = 250;
     let limit : number = 151;
     let url : string = this.baseUrl + "/pokemon?offset="+ offset + "&limit=" + limit;
 

@@ -1,0 +1,29 @@
+@if (stats) {
+    <div class = "column">
+        <h5 class="subtitle is-4">Stats </h5>
+        <div class = "columns">
+            <div class = "column">
+                <h5 class="subtitle is-5">Base ({{baseTotal}})</h5>
+                <canvas baseChart
+                    [datasets]="radarChartStatsDatasets"
+                    [options]="radarChartStatsOptions"
+                    [labels]="radarChartLabels"
+                    [type]="'radar'">  
+                </canvas>
+            </div>
+            <div class = "column">
+                <h5 class="subtitle is-5">Effort ({{effortTotal}})</h5>
+                <canvas baseChart
+                    [datasets]="radarChartEffortDatasets"
+                    [options]="radarChartEffortOptions"
+                    [labels]="radarChartLabels"
+                    [type]="'radar'">  
+                </canvas>
+            </div>
+        </div>
+        
+    
+        
+    </div>
+}
+

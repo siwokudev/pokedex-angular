@@ -8,7 +8,14 @@ export interface Pokemon {
     species:{
         name: string,
         url: string,
-    }
+    },
+    stats: Stats[]
+}
+
+export interface Stats {
+    base_stat: number
+    effort: number,
+    stat: SimpleField
 }
 
 export interface PokemonSpecies {

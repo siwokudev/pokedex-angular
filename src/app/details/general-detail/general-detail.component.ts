@@ -5,11 +5,12 @@ import { PokeApiService } from '../../shared/services/poke-api.service';
 import { ActivatedRoute, ParamMap, Router} from '@angular/router';
 import { Pokemon, PokemonSpecies } from '../../shared/interfaces/pokeApi';
 import { FlavourTextLanguageFilterPipe } from '../../shared/pipes/flavour-text-language-filter.pipe';
+import { StatsDetailComponent } from '../stats-detail/stats-detail.component';
 
 @Component({
   selector: 'app-general-detail',
   standalone: true,
-  imports: [FormsModule, NgOptimizedImage, TitleCasePipe, FlavourTextLanguageFilterPipe],
+  imports: [FormsModule, NgOptimizedImage, TitleCasePipe, FlavourTextLanguageFilterPipe, StatsDetailComponent],
   templateUrl: './general-detail.component.html',
   styleUrl: './general-detail.component.css'
 })
